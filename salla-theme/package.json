@@ -7,14 +7,8 @@
     "node": ">=16"
   },
   "scripts": {
-    "watch": "salla theme watch",
-    "build": "salla theme build",
     "preview": "salla theme preview",
-    "publish": "salla theme publish"
-  },
-  "devDependencies": {
-    "@salla.sa/twilight": "^2.0.0",
-    "@salla.sa/theme-raed": "^1.0.0",
-    "sass": "^1.60.0"
+    "theme:publish": "salla theme publish",
+    "theme:list": "salla theme list"
   }
 }
