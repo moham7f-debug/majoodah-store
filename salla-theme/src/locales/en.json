@@ -1,0 +1,23 @@
+{
+  "common": {
+    "store_name": "Mojawada Store",
+    "tagline": "Educational products"
+  },
+  "home": {
+    "best_sellers": "Best sellers",
+    "new_products": "New arrivals",
+    "categories": "Categories",
+    "add_to_cart": "Add to cart",
+    "added": "✓ Added",
+    "view_all": "View all →"
+  },
+  "cart": {
+    "title": "Shopping cart",
+    "empty": "Your cart is empty 🛒",
+    "total": "Total",
+    "checkout_whatsapp": "Checkout via WhatsApp"
+  },
+  "faq": {
+    "title": "FAQ"
+  }
+}

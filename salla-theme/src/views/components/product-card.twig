@@ -1,0 +1,30 @@
+{#
+  بطاقة منتج (تجريبية) — تتوقع المتغيّر `p` بالحقول:
+  { id, title, cat, price, was, rating, badge, color, group }
+  البيانات هنا تجريبية كما في التصميم الأصلي. لربطها بمنتجات سلة الحقيقية
+  استبدل هذا المكوّن بـ <salla-product-card :source="product" /> (انظر README).
+#}
+<article class="card" data-id="{{ p.id }}" data-title="{{ p.title }}" data-cat="{{ p.cat }}" data-price="{{ p.price }}" data-color="{{ p.color }}">
+  <div class="card__media-wrap" style="position:relative">
+    <svg class="card__media" viewBox="0 0 200 150" role="img" aria-label="معاينة المنتج" style="background:linear-gradient(135deg, {{ p.color }}1a, {{ p.color }}33)">
+      <rect x="58" y="26" width="84" height="104" rx="8" fill="#fff" stroke="{{ p.color }}33"/>
+      <rect x="70" y="40" width="60" height="9" rx="4" fill="{{ p.color }}"/>
+      <rect x="70" y="58" width="48" height="6" rx="3" fill="#dfe9e6"/>
+      <rect x="70" y="70" width="60" height="6" rx="3" fill="#eef3f1"/>
+      <rect x="70" y="82" width="40" height="6" rx="3" fill="#eef3f1"/>
+      <rect x="70" y="100" width="60" height="6" rx="3" fill="#eef3f1"/>
+      <circle cx="120" cy="118" r="9" fill="{{ p.color }}55"/>
+    </svg>
+    {% if p.badge %}<span class="card__tag">{{ p.badge }}</span>{% endif %}
+  </div>
+  <div class="card__body">
+    <span class="card__cat">{{ p.cat }}</span>
+    <h3 class="card__title">{{ p.title }}</h3>
+    <div class="card__rating" aria-label="التقييم {{ p.rating }} من 5">★ {{ p.rating }}</div>
+    <div class="card__price">
+      <span class="now">{{ p.price }} ر.س</span>
+      {% if p.was %}<span class="was">{{ p.was }} ر.س</span>{% endif %}
+    </div>
+    <button class="card__add" data-add="{{ p.id }}">أضف للسلة</button>
+  </div>
+</article>

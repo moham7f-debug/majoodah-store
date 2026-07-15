@@ -1,0 +1,103 @@
+{
+  "name": "Mojawada Store",
+  "version": "1.0.0",
+  "api": "2",
+  "description": "قالب متجر مجودة — تصميم عربي RTL للمنتجات التعليمية (سجلات وملفات مدرسية).",
+  "author": {
+    "name": "Mojawada",
+    "url": "https://salla.sa"
+  },
+  "support": {
+    "email": "support@example.com",
+    "whatsapp": "966500000000"
+  },
+  "settings": [
+    {
+      "id": "colors",
+      "label": "الألوان",
+      "icon": "sicon-color-palette",
+      "fields": [
+        { "id": "primary_color", "type": "color", "label": "اللون الأساسي", "value": "#0e7c6b" },
+        { "id": "primary_dark", "type": "color", "label": "اللون الأساسي الغامق", "value": "#0b6a5b" },
+        { "id": "accent_color", "type": "color", "label": "اللون المميز (ذهبي)", "value": "#f3b14a" },
+        { "id": "ink_color", "type": "color", "label": "لون العناوين", "value": "#16302b" }
+      ]
+    },
+    {
+      "id": "announcement",
+      "label": "الشريط الإعلاني",
+      "icon": "sicon-megaphone",
+      "fields": [
+        {
+          "id": "announcement_enabled",
+          "type": "boolean",
+          "label": "إظهار الشريط الإعلاني",
+          "value": true
+        },
+        {
+          "id": "announcement_text",
+          "type": "string",
+          "label": "نص الشريط الإعلاني",
+          "value": "✨ تحديثات مجانية مدى الحياة على كل المنتجات — تسليم فوري عبر واتساب"
+        }
+      ]
+    },
+    {
+      "id": "contact",
+      "label": "التواصل",
+      "icon": "sicon-whatsapp",
+      "fields": [
+        {
+          "id": "whatsapp_number",
+          "type": "string",
+          "label": "رقم واتساب (بصيغة دولية بدون +)",
+          "value": "966500000000"
+        },
+        {
+          "id": "whatsapp_display",
+          "type": "string",
+          "label": "رقم واتساب للعرض",
+          "value": "0500000000"
+        }
+      ]
+    },
+    {
+      "id": "hero",
+      "label": "البانر الرئيسي",
+      "icon": "sicon-image",
+      "fields": [
+        {
+          "id": "hero_badge",
+          "type": "string",
+          "label": "شارة البانر",
+          "value": "جودة تليق بمهنتك ✦"
+        },
+        {
+          "id": "hero_title",
+          "type": "string",
+          "label": "عنوان البانر",
+          "value": "سجلات وملفات مدرسية جاهزة للتعديل والطباعة"
+        },
+        {
+          "id": "hero_subtitle",
+          "type": "textarea",
+          "label": "وصف البانر",
+          "value": "بصيغة PDF و Word متوافقة مع هوية وزارة التعليم — تناسب المعلمين والمعلمات والإداريين. اطلب الآن واستلم ملفاتك فورًا عبر واتساب."
+        }
+      ]
+    },
+    {
+      "id": "home_data",
+      "label": "بيانات العرض (تجريبية)",
+      "icon": "sicon-store",
+      "fields": [
+        {
+          "id": "use_demo_products",
+          "type": "boolean",
+          "label": "عرض المنتجات التجريبية بدل منتجات المتجر",
+          "value": true
+        }
+      ]
+    }
+  ]
+}

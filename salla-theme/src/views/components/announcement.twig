@@ -1,0 +1,8 @@
+{# الشريط الإعلاني العلوي #}
+{% if theme.settings.get('announcement_enabled', true) %}
+  <div class="topbar" role="region" aria-label="إعلان">
+    <div class="container topbar__inner">
+      <span>{{ theme.settings.get('announcement_text', '✨ تحديثات مجانية مدى الحياة على كل المنتجات — تسليم فوري عبر واتساب') }}</span>
+    </div>
+  </div>
+{% endif %}
