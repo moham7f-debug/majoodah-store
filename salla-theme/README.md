@@ -71,10 +71,16 @@ salla theme preview
 salla theme publish
 ```
 
-> ⚠️ **مهم:** أمر `salla theme publish` لا يقبل أي وسائط (arguments). شغّله هكذا
-> تمامًا من **داخل مجلد `salla-theme/`**. إضافة أي كلمة بعده تُنتج الخطأ:
-> `too many arguments for 'publish'. Expected 0 arguments`.
-> ولا تستخدم `npm publish` (أمر npm مختلف تمامًا) — استخدم الأمر أعلاه مباشرة.
+> ⚠️ **مهم — أكثر خطأ شائع:** أمر `salla theme publish` لا يقبل أي وسائط (arguments)
+> على الإطلاق. **لا تكتب اسم القالب ولا وصفه ولا أي مسار بعده.** القالب الذي سيُنشر
+> يُحدَّد من **المجلد الذي أنت واقف فيه** (لهذا يجب `cd salla-theme` أولًا).
+>
+> - ❌ خطأ: `salla theme publish قالب متجر مجودة` ← 3 كلمات = `Expected 0 arguments but got 3`
+> - ❌ خطأ: `salla theme publish mojawada-theme` ← كلمة زائدة = `got 1`
+> - ✅ صحيح: `salla theme publish` ← لا شيء بعده
+>
+> كل كلمة عربية تُحسب وسيطًا منفصلًا، لذلك تظهر أرقام مثل got 3 أو got 8 بحسب عدد
+> الكلمات المكتوبة. ولا تستخدم `npm publish` (أمر npm مختلف تمامًا).
 
 بعد قبول النشر، فعّل القالب من:
 **لوحة تحكم سلة ← المتجر ← تصميم المتجر ← اختيار القالب**.
