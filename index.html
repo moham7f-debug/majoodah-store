@@ -29,7 +29,11 @@
     display:flex;align-items:center;gap:14px;box-shadow:0 2px 12px rgba(0,0,0,.14);position:sticky;top:0;z-index:30}
   .appbar h1{font-size:19px;margin:0;font-weight:800}
   .appbar .sub{font-size:12.5px;opacity:.9;margin-right:auto}
-  .appbar .moedot{display:inline-block}
+  .appbar .moedot{display:inline-flex;align-items:center}
+  .brand-logo{display:inline-flex;align-items:center;gap:7px;background:#fff;color:var(--teal-d);font-weight:800;
+    font-size:19px;padding:6px 15px;border-radius:12px;box-shadow:0 2px 9px rgba(0,0,0,.14);letter-spacing:.5px}
+  .brand-logo::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--gold);flex:none}
+  .sep{width:1px;height:26px;background:var(--line);align-self:center}
 
   /* ===== Export dropdown (header) ===== */
   .export-menu{position:relative;margin-right:auto}
@@ -91,14 +95,26 @@
   details.settings>summary{cursor:pointer;font-weight:800;color:var(--teal-d);font-size:14px;list-style:none}
   details.settings>summary::-webkit-details-marker{display:none}
   details.settings>summary::before{content:"⚙ "}
-  .crit-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-top:14px}
-  .crit-grid .grp-name input{font-weight:800;color:var(--teal-d)}
-  .crit-grid input{margin-bottom:8px;font-size:13px;padding:8px 10px}
+  .crit-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:14px}
+  .crit-col{background:var(--teal-xl);border:1px solid var(--line);border-radius:12px;padding:12px}
+  .crit-col .grp-head{display:flex;gap:6px;align-items:center;margin-bottom:10px}
+  .crit-col .grp-title{flex:1;font-weight:800;color:var(--teal-d);font-size:13.5px;padding:8px 10px;margin:0}
+  .crit-row{display:flex;gap:6px;align-items:center;margin-bottom:7px}
+  .crit-row .crit-name{flex:2;font-size:13px;padding:8px 10px;margin:0}
+  .crit-row .crit-max{flex:1;min-width:0;font-size:13px;padding:8px 6px;margin:0;text-align:center}
+  .crit-del{flex:none;width:30px;height:34px;border:1px solid var(--gold-l);background:#fff;color:#b3462f;
+    border-radius:8px;cursor:pointer;font-size:13px;font-weight:800;line-height:1;transition:.13s}
+  .crit-del:hover{background:#fdecec;border-color:#e0a9a0}
+  .crit-add{width:100%;margin-top:4px;padding:8px;border:1.5px dashed var(--teal);background:#fff;color:var(--teal-d);
+    border-radius:9px;cursor:pointer;font-weight:800;font-size:12.5px;font-family:inherit;transition:.13s}
+  .crit-add:hover{background:var(--teal-l)}
+  .crit-add-grp{grid-column:1/-1;padding:13px;border:1.5px dashed var(--gold);background:var(--teal-xl);color:var(--teal-d);
+    border-radius:12px;cursor:pointer;font-weight:800;font-size:14px;font-family:inherit;transition:.13s}
+  .crit-add-grp:hover{background:var(--gold-l)}
 
-  .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px;background:#fff;
-    padding:12px 14px;border-radius:12px;box-shadow:var(--shadow);border:1px solid #e3ece9}
-  .toolbar .count{margin-right:auto;font-size:13px;color:var(--muted);font-weight:600}
-  .toolbar .sep{width:1px;height:26px;background:var(--line)}
+  .form-status{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:16px;padding-top:14px;
+    border-top:1px dashed var(--line)}
+  .form-status .count{margin-inline-start:auto;font-size:13px;color:var(--muted);font-weight:700}
 
   .sheet-scroll{overflow:auto;background:#dfe8e6;border-radius:var(--radius);box-shadow:var(--shadow) inset;padding:16px}
   .sheet{background:#fff;width:1120px;margin:0 auto 18px;box-shadow:0 3px 14px rgba(0,0,0,.10);border-radius:6px}
@@ -127,11 +143,12 @@
   .sheet-head{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;margin-bottom:6px}
   .sh-mid{background:var(--teal);color:#fff;font-weight:800;font-size:22px;padding:9px 28px;border-radius:14px;
     border:2px solid var(--gold);box-shadow:inset 0 0 0 3px rgba(255,255,255,.22);white-space:nowrap}
-  .sh-right{display:flex;align-items:center;gap:12px;justify-content:flex-start}
+  .sh-right{display:flex;align-items:center;justify-content:flex-start}
   .sh-left{display:flex;align-items:center;justify-content:flex-end}
   .sh-text{font-size:12px;line-height:1.6;color:#3a4b47;font-weight:600;text-align:right}
   .sh-text .moe{color:var(--teal-d);font-weight:800}
-  .sh-logo img{height:50px !important;width:auto !important;display:block}
+  .sh-logos{display:flex;align-items:center;gap:16px}
+  .sh-logos img{height:58px !important;width:auto !important;display:block}
 
   .meta-bar{display:flex;flex-wrap:wrap;gap:0;background:linear-gradient(180deg,var(--teal-xl),#fff);
     border:1px solid var(--line);border-bottom:2.5px solid var(--teal);border-radius:12px 12px 0 0;
@@ -256,12 +273,11 @@
       <span class="sep no-print" id="addSep" style="display:none"></span>
       <button class="btn btn-ghost no-print" id="addBtnTop" onclick="addRow()" style="display:none">＋ طالب</button>
     </div>
-  </div>
 
-  <!-- ============ TOOLBAR ============ -->
-  <div class="toolbar no-print" id="toolbar" style="display:none">
-    <span class="hint" style="font-size:13px;color:var(--muted)">استخدم زر «⬇ تصدير» في الأعلى للحفظ • زر «＋ طالب» بالأعلى لإضافة طالب</span>
-    <span class="count" id="countLbl"></span>
+    <div class="form-status no-print" id="formStatus" style="display:none">
+      <span class="hint" style="font-size:13px;color:var(--muted)">استخدم زر «⬇ تصدير» في الأعلى للحفظ • زر «＋ طالب» بالأعلى لإضافة طالب</span>
+      <span class="count" id="countLbl"></span>
+    </div>
   </div>
 
   <div class="sheet-scroll" id="sheetScroll">
@@ -315,18 +331,31 @@ function coverDeco(flip){ // decorative supplies band
     ${flip?'<rect width="1120" height="96" fill="#3f8d80"/>':''}</svg>`;
 }
 
-/* ===================== Criteria editor ===================== */
+/* ===================== Criteria editor (إضافة/حذف) ===================== */
 function renderCritEditor(){
   const host=$('critEditor'); host.innerHTML='';
   groups.forEach((g,gi)=>{
-    const col=document.createElement('div');
-    let html=`<div class="grp-name"><label>اسم المجموعة ${gi+1}</label><input type="text" value="${esc(g.name)}" oninput="groups[${gi}].name=this.value;saveState()"></div>`;
-    g.cols.forEach((c,ci)=>{ html+=`<div style="display:flex;gap:6px">
-      <input type="text" style="flex:2" value="${esc(c.name)}" oninput="groups[${gi}].cols[${ci}].name=this.value;saveState()" placeholder="اسم المعيار">
-      <input type="text" style="flex:1" value="${c.max}" oninput="groups[${gi}].cols[${ci}].max=+this.value||0;saveState()" placeholder="الدرجة"></div>`; });
+    const col=document.createElement('div'); col.className='crit-col';
+    let html=`<div class="grp-head">
+      <input class="grp-title" type="text" value="${esc(g.name)}" oninput="groups[${gi}].name=this.value;saveState()" placeholder="اسم المجموعة ${gi+1}">
+      <button type="button" class="crit-del" title="حذف المجموعة" onclick="removeGroup(${gi})">✕</button></div>`;
+    g.cols.forEach((c,ci)=>{ html+=`<div class="crit-row">
+      <input type="text" class="crit-name" value="${esc(c.name)}" oninput="groups[${gi}].cols[${ci}].name=this.value;saveState()" placeholder="اسم المعيار">
+      <input type="text" class="crit-max" value="${esc(String(c.max))}" oninput="groups[${gi}].cols[${ci}].max=+this.value||0;saveState()" onchange="if(students.length)renderSheet()" placeholder="الدرجة">
+      <button type="button" class="crit-del" title="حذف المعيار" onclick="removeCol(${gi},${ci})">✕</button></div>`; });
+    html+=`<button type="button" class="crit-add" onclick="addCol(${gi})">＋ معيار</button>`;
     col.innerHTML=html; host.appendChild(col);
   });
+  const addg=document.createElement('button');
+  addg.type='button'; addg.className='crit-add-grp'; addg.textContent='＋ إضافة مجموعة تقييم';
+  addg.onclick=addGroup; host.appendChild(addg);
 }
+function addGroup(){groups.push({key:'g'+Date.now(),name:'مجموعة جديدة',cols:[{name:'معيار',max:10}]});afterCritChange();}
+function removeGroup(gi){if(groups.length<=1){toast('يجب إبقاء مجموعة واحدة على الأقل');return;}groups.splice(gi,1);afterCritChange();}
+function addCol(gi){groups[gi].cols.push({name:'معيار',max:10});afterCritChange();}
+function removeCol(gi,ci){if(groups[gi].cols.length<=1){toast('يجب إبقاء معيار واحد على الأقل في المجموعة');return;}groups[gi].cols.splice(ci,1);afterCritChange();}
+function resizeMarks(){const len=flatCols().length;students.forEach(st=>{const m=Array(len).fill('');for(let i=0;i<Math.min(len,(st.marks||[]).length);i++)m[i]=st.marks[i];st.marks=m;});}
+function afterCritChange(){resizeMarks();saveState();renderCritEditor();if(students.length)renderSheet();}
 const groupMax=g=>g.cols.reduce((s,c)=>s+(+c.max||0),0);
 const grandMax=()=>groups.reduce((s,g)=>s+groupMax(g),0);
 const flatCols=()=>{const a=[];groups.forEach(g=>g.cols.forEach(c=>a.push(c)));return a;};
@@ -336,13 +365,13 @@ function generate(){
   const lines=$('names').value.split('\n').map(s=>s.trim()).filter(Boolean);
   if(!lines.length){toast('أدخل اسماً واحداً على الأقل');return;}
   students=lines.map((name,i)=>({name, marks:(students[i]&&students[i].marks)||Array(flatCols().length).fill('')}));
-  saveState(); renderSheet(); window.scrollTo({top:$('toolbar').offsetTop-70,behavior:'smooth'});
+  saveState(); renderSheet(); window.scrollTo({top:$('sheetScroll').offsetTop-80,behavior:'smooth'});
 }
 
 function renderSheet(){
   const host=$('sheetHost');
   $('emptyState').style.display=students.length?'none':'block';
-  $('toolbar').style.display=students.length?'flex':'none';
+  $('formStatus').style.display=students.length?'flex':'none';
   $('exportMenu').style.display=students.length?'inline-flex':'none';
   $('addBtnTop').style.display=students.length?'inline-flex':'none';
   $('addSep').style.display=students.length?'inline-block':'none';
@@ -385,7 +414,6 @@ function coverHTML(m){
 function headerHTML(m){
   return `<div class="sheet-head">
     <div class="sh-right">
-      <div class="sh-logo">${moeLogoSVG(120)}</div>
       <div class="sh-text">
         <div>المملكة العربية السعودية</div><div class="moe">وزارة التعليم</div>
         <div>${esc(m.admin)||'الإدارة العامة للتعليم'}</div>
@@ -394,7 +422,7 @@ function headerHTML(m){
       </div>
     </div>
     <div class="sh-mid">كشف متابعة الطلاب</div>
-    <div class="sh-left"><div class="sh-logo">${vision2030SVG(120)}</div></div>
+    <div class="sh-left"><div class="sh-logos">${moeLogoSVG(100)}${vision2030SVG(120)}</div></div>
   </div>
   <div class="meta-bar">
     <span><b>الصف / الشعبة:</b> ${esc(m.grade)||'..........'}</span>
@@ -497,7 +525,7 @@ function ingestRows(rows){
   $('names').value=imported.map(s=>s.name).join('\n');
   saveState(); renderSheet();
   toast(`تم استيراد ${imported.length} طالباً`);
-  window.scrollTo({top:$('toolbar').offsetTop-70,behavior:'smooth'});
+  window.scrollTo({top:$('sheetScroll').offsetTop-80,behavior:'smooth'});
 }
 
 /* ===================== Shared matrix ===================== */
@@ -677,7 +705,9 @@ function loadSample(){
 }
 
 /* init */
-$('barLogo').innerHTML = window.LOGO_MUJAWWADA ? `<img src="${window.LOGO_MUJAWWADA}" alt="" style="height:38px;width:auto;display:block;background:#fff;padding:4px 8px;border-radius:8px">` : '';
+$('barLogo').innerHTML = window.LOGO_MUJAWWADA
+  ? `<img src="${window.LOGO_MUJAWWADA}" alt="مجودة" style="height:40px;width:auto;display:block;background:#fff;padding:4px 10px;border-radius:10px">`
+  : `<span class="brand-logo">مجودة</span>`;
 document.addEventListener('DOMContentLoaded',()=>META_FIELDS.forEach(k=>$(k)&&$(k).addEventListener('input',saveState)));
 loadState(); renderCritEditor(); if(students.length)renderSheet();
 </script>
