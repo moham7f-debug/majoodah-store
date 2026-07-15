@@ -31,6 +31,27 @@
   .appbar .sub{font-size:12.5px;opacity:.9;margin-right:auto}
   .appbar .moedot{display:inline-block}
 
+  /* ===== Export dropdown (header) ===== */
+  .export-menu{position:relative;margin-right:auto}
+  .btn-export-toggle{background:rgba(255,255,255,.16);color:#fff;border:1.5px solid rgba(255,255,255,.55);
+    border-radius:11px;padding:9px 18px;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;
+    display:inline-flex;align-items:center;gap:8px;transition:.15s;white-space:nowrap}
+  .btn-export-toggle:hover{background:rgba(255,255,255,.30)}
+  .btn-export-toggle .caret{transition:.2s;font-size:12px}
+  .export-menu.open .btn-export-toggle .caret{transform:rotate(180deg)}
+  .export-dropdown{position:absolute;top:calc(100% + 12px);left:0;background:#fff;border-radius:14px;
+    box-shadow:0 16px 38px rgba(20,60,54,.22);padding:8px;display:none;flex-direction:column;gap:4px;
+    min-width:216px;z-index:60;border:1px solid #e3ece9}
+  .export-menu.open .export-dropdown{display:flex}
+  .export-dropdown .xhdr{font-size:11px;font-weight:800;color:var(--muted);padding:6px 12px 4px;letter-spacing:.3px}
+  .xrow{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:11px;width:100%;text-align:start;
+    background:#fff;color:var(--ink);border:1px solid transparent;border-radius:10px;padding:10px 13px;
+    font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;transition:.13s}
+  .xrow:hover{background:var(--teal-xl);border-color:var(--teal-l)}
+  .xrow:active{transform:translateY(1px)}
+  .xrow .xdot{width:11px;height:11px;border-radius:3px;flex:none}
+  .xrow .xicon{color:var(--muted);font-size:12px}
+
   .wrap{max-width:1200px;margin:22px auto;padding:0 16px}
 
   .card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;margin-bottom:22px;border:1px solid #e3ece9}
@@ -56,7 +77,7 @@
   .btn-primary{background:var(--teal);color:#fff}.btn-primary:hover{background:var(--teal-d)}
   .btn-ghost{background:#fff;color:var(--teal-d);border:1.5px solid var(--teal)}.btn-ghost:hover{background:var(--teal-l)}
   .btn-sm{padding:9px 15px;font-size:13px}
-  .btn-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+  .btn-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:20px}
 
   /* export buttons palette */
   .btn-pdf{background:#c0392b;color:#fff}.btn-pdf:hover{background:#9c2c20}
@@ -87,7 +108,8 @@
     padding:0 0 0;background:#fff}
   .cover .deco{height:96px;width:100%;display:block}
   .cover .deco.bottom{margin-top:auto}
-  .cover .logos{display:flex;justify-content:space-between;align-items:flex-start;padding:18px 46px 0}
+  .cover .logos{display:flex;justify-content:space-between;align-items:center;padding:22px 52px 0}
+  .cover .logos img{height:90px !important;width:auto !important;display:block}
   .cover .center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px;padding:10px 40px}
   .cover .title-box{background:var(--teal);color:#fff;font-size:40px;font-weight:800;letter-spacing:1px;
     padding:26px 70px;border-radius:22px;position:relative;box-shadow:0 8px 24px rgba(44,107,96,.30)}
@@ -103,15 +125,21 @@
   /* ===== SHEET HEADER ===== */
   .sheet-inner{padding:18px 20px}
   .sheet-head{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;margin-bottom:6px}
-  .sh-left{font-size:11px;line-height:1.5;color:#55665f}
   .sh-mid{background:var(--teal);color:#fff;font-weight:800;font-size:22px;padding:9px 28px;border-radius:14px;
     border:2px solid var(--gold);box-shadow:inset 0 0 0 3px rgba(255,255,255,.22);white-space:nowrap}
-  .sh-right{text-align:left;font-size:12px;line-height:1.65;color:#3a4b47;font-weight:600}
-  .sh-right .moe{color:var(--teal-d);font-weight:800}
+  .sh-right{display:flex;align-items:center;gap:12px;justify-content:flex-start}
+  .sh-left{display:flex;align-items:center;justify-content:flex-end}
+  .sh-text{font-size:12px;line-height:1.6;color:#3a4b47;font-weight:600;text-align:right}
+  .sh-text .moe{color:var(--teal-d);font-weight:800}
+  .sh-logo img{height:50px !important;width:auto !important;display:block}
 
-  .meta-bar{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;border-bottom:2px solid var(--teal);
-    padding:8px 4px;margin:8px 0 6px;font-size:13.5px;font-weight:700}
-  .meta-bar b{color:var(--teal-d)}
+  .meta-bar{display:flex;flex-wrap:wrap;gap:0;background:linear-gradient(180deg,var(--teal-xl),#fff);
+    border:1px solid var(--line);border-bottom:2.5px solid var(--teal);border-radius:12px 12px 0 0;
+    padding:0;margin:10px 0 0;font-size:13px;font-weight:700;overflow:hidden}
+  .meta-bar span{flex:1 1 25%;text-align:center;padding:10px 8px;border-inline-start:1px solid var(--line);
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .meta-bar span:first-child{border-inline-start:none}
+  .meta-bar b{color:var(--teal-d);font-weight:800}
 
   table.kashf{border-collapse:collapse;width:100%;font-size:13px;table-layout:fixed}
   table.kashf th,table.kashf td{border:1px solid #9ec7bf;text-align:center;padding:4px 3px}
@@ -129,6 +157,11 @@
     font-family:inherit;padding:7px 10px;color:var(--ink)}
   table.kashf input.nm:focus{outline:none;background:#fff;box-shadow:inset 0 0 0 2px var(--teal-l);border-radius:4px}
   table.kashf td.total-cell{font-weight:800;color:var(--teal-d);background:var(--teal-xl);font-size:15px}
+  table.kashf td.mark-cell{padding:5px 3px;vertical-align:middle}
+  .boxes{display:grid;gap:3px;justify-content:center;margin:0 auto}
+  .box{width:15px;height:15px;border:1.4px solid #a8ccc4;border-radius:3px;background:#fff;cursor:pointer;transition:.1s}
+  .box:hover{border-color:var(--teal);box-shadow:0 0 0 2px var(--teal-l)}
+  .box.on{background:var(--teal);border-color:var(--teal-d)}
   table.kashf .grp-a{background:#e0f0eb}
   table.kashf .grp-b{background:#fff}
   table.kashf .grp-c{background:#e0f0eb}
@@ -151,6 +184,8 @@
     .sheet:last-child{page-break-after:auto}
     .cover{width:100%;min-height:auto;height:195mm}
     table.kashf input{color:#000 !important}
+    .box{-webkit-print-color-adjust:exact;print-color-adjust:exact;border-color:#7fb3a8 !important}
+    .box.on{background:var(--teal) !important}
   }
 </style>
 </head>
@@ -158,7 +193,19 @@
 <div class="appbar">
   <span class="moedot" id="barLogo"></span>
   <h1>كشف متابعة الطلاب</h1>
-  <span class="sub">إنشاء • تعبئة • استيراد • تصدير (PDF · Word · Excel · PowerPoint · Numbers · Pages)</span>
+
+  <div class="export-menu no-print" id="exportMenu" style="display:none">
+    <button class="btn-export-toggle" onclick="toggleExportMenu()">⬇ تصدير <span class="caret">▾</span></button>
+    <div class="export-dropdown" id="exportDropdown">
+      <div class="xhdr">تصدير الكشف كـ</div>
+      <button class="xrow" onclick="exportPDF();closeExportMenu()"><span class="xdot" style="background:#c0392b"></span><span>PDF</span><span class="xicon">⬇</span></button>
+      <button class="xrow" onclick="exportWord();closeExportMenu()"><span class="xdot" style="background:#2b579a"></span><span>Word</span><span class="xicon">⬇</span></button>
+      <button class="xrow" onclick="exportExcel();closeExportMenu()"><span class="xdot" style="background:#1d6f42"></span><span>Excel</span><span class="xicon">⬇</span></button>
+      <button class="xrow" onclick="exportPPT();closeExportMenu()"><span class="xdot" style="background:#c43e1c"></span><span>PowerPoint</span><span class="xicon">⬇</span></button>
+      <button class="xrow" onclick="exportNumbers();closeExportMenu()"><span class="xdot" style="background:#0a8a3f"></span><span>Numbers</span><span class="xicon">⬇</span></button>
+      <button class="xrow" onclick="exportPages();closeExportMenu()"><span class="xdot" style="background:#e8820c"></span><span>Pages</span><span class="xicon">⬇</span></button>
+    </div>
+  </div>
 </div>
 
 <div class="wrap">
@@ -206,19 +253,14 @@
       <button class="btn btn-primary" onclick="generate()">✓ إنشاء الكشف</button>
       <button class="btn btn-ghost no-print" onclick="loadSample()">تعبئة مثال تجريبي</button>
       <button class="btn btn-ghost no-print" onclick="clearAll()">مسح الكل</button>
+      <span class="sep no-print" id="addSep" style="display:none"></span>
+      <button class="btn btn-ghost no-print" id="addBtnTop" onclick="addRow()" style="display:none">＋ طالب</button>
     </div>
   </div>
 
   <!-- ============ TOOLBAR ============ -->
   <div class="toolbar no-print" id="toolbar" style="display:none">
-    <button class="btn btn-pdf btn-sm" onclick="exportPDF()">⬇ PDF</button>
-    <button class="btn btn-word btn-sm" onclick="exportWord()">⬇ Word</button>
-    <button class="btn btn-excel btn-sm" onclick="exportExcel()">⬇ Excel</button>
-    <button class="btn btn-ppt btn-sm" onclick="exportPPT()">⬇ PowerPoint</button>
-    <button class="btn btn-numbers btn-sm" onclick="exportNumbers()">⬇ Numbers</button>
-    <button class="btn btn-pages btn-sm" onclick="exportPages()">⬇ Pages</button>
-    <span class="sep"></span>
-    <button class="btn btn-ghost btn-sm" onclick="addRow()">＋ طالب</button>
+    <span class="hint" style="font-size:13px;color:var(--muted)">استخدم زر «⬇ تصدير» في الأعلى للحفظ • زر «＋ طالب» بالأعلى لإضافة طالب</span>
     <span class="count" id="countLbl"></span>
   </div>
 
@@ -301,6 +343,10 @@ function renderSheet(){
   const host=$('sheetHost');
   $('emptyState').style.display=students.length?'none':'block';
   $('toolbar').style.display=students.length?'flex':'none';
+  $('exportMenu').style.display=students.length?'inline-flex':'none';
+  $('addBtnTop').style.display=students.length?'inline-flex':'none';
+  $('addSep').style.display=students.length?'inline-block':'none';
+  if(!students.length)closeExportMenu();
   const pages=Math.ceil(students.length/ROWS_PER_PAGE);
   $('countLbl').textContent=students.length?`عدد الطلاب: ${students.length} — الصفحات: ${pages+1} (غلاف + ${pages})`:'';
   host.innerHTML='';
@@ -322,7 +368,7 @@ function renderSheet(){
 function coverHTML(m){
   return `<div class="cover">
     ${coverDeco(false)}
-    <div class="logos"><div>${moeLogoSVG(125)}</div><div>${vision2030SVG(160)}</div></div>
+    <div class="logos"><div>${moeLogoSVG(150)}</div><div>${vision2030SVG(150)}</div></div>
     <div class="center">
       <div class="title-box">كشف متابعة الطلاب</div>
       <div class="course">${esc(m.subject)}</div>
@@ -338,14 +384,17 @@ function coverHTML(m){
 
 function headerHTML(m){
   return `<div class="sheet-head">
-    <div class="sh-right" style="text-align:right">
-      <div>المملكة العربية السعودية</div><div class="moe">وزارة التعليم</div>
-      <div>${esc(m.admin)||'الإدارة العامة للتعليم'}</div>
-      <div>${esc(m.office)||'مكتب التعليم'}</div>
-      <div>${esc(m.school)||'المدرسة'}</div>
+    <div class="sh-right">
+      <div class="sh-logo">${moeLogoSVG(120)}</div>
+      <div class="sh-text">
+        <div>المملكة العربية السعودية</div><div class="moe">وزارة التعليم</div>
+        <div>${esc(m.admin)||'الإدارة العامة للتعليم'}</div>
+        <div>${esc(m.office)||'مكتب التعليم'}</div>
+        <div>${esc(m.school)||'المدرسة'}</div>
+      </div>
     </div>
     <div class="sh-mid">كشف متابعة الطلاب</div>
-    <div class="sh-left" style="display:flex;flex-direction:column;align-items:flex-start;gap:4px">${vision2030SVG(110)}${moeLogoSVG(66)}</div>
+    <div class="sh-left"><div class="sh-logo">${vision2030SVG(120)}</div></div>
   </div>
   <div class="meta-bar">
     <span><b>الصف / الشعبة:</b> ${esc(m.grade)||'..........'}</span>
@@ -367,20 +416,31 @@ function tableHTML(start,end,m,pageNo,pages){
   for(let i=start;i<end;i++){
     const st=students[i]; let cells='', ci=0;
     groups.forEach((g,gi)=>{g.cols.forEach(c=>{const v=st.marks[ci]??'';
-      cells+=`<td class="grp-${gk[gi%3]}"><input class="g" data-row="${i}" data-col="${ci}" inputmode="decimal" value="${esc(String(v))}" max="${c.max}"></td>`;ci++;});});
+      cells+=`<td class="mark-cell grp-${gk[gi%3]}">${boxesHTML(i,ci,c.max,v)}</td>`;ci++;});});
     body+=`<tr><td>${toArabic(i+1)}</td><td class="name-cell"><input class="nm" data-row="${i}" value="${esc(st.name)}"></td>${cells}<td class="total-cell" id="tot-${i}">${rowTotal(st)}</td></tr>`;
   }
   return `<table class="kashf"><thead><tr>${top}</tr><tr class="sub">${sub}</tr></thead><tbody>${body}</tbody></table>
     <div class="sheet-foot"><span>${m.teacher?'معلم المادة: '+esc(m.teacher):''}</span><span>${m.principal?'مدير المدرسة: '+esc(m.principal):''}</span><span>صفحة ${toArabic(pageNo)} من ${toArabic(pages)}</span></div>`;
 }
 
+/* ===================== Boxes (grid of marks: كل خانة = درجة) ===================== */
+function boxesHTML(row,col,max,val){
+  const n=parseInt(val,10)||0; const cols=Math.min(5,Math.max(1,max));
+  let b='';
+  for(let k=1;k<=max;k++){b+=`<span class="box${k<=n?' on':''}" data-row="${row}" data-col="${col}" data-k="${k}"></span>`;}
+  return `<div class="boxes" style="grid-template-columns:repeat(${cols},15px)">${b}</div>`;
+}
+
 /* ===================== Calc / bind ===================== */
 function rowTotal(st){const f=flatCols();let s=0,has=false;st.marks.forEach((v,i)=>{const n=parseFloat(v);if(!isNaN(n)){s+=Math.min(n,f[i].max);has=true;}});return has?Math.round(s*10)/10:'';}
 function bindInputs(){
-  document.querySelectorAll('input.g').forEach(inp=>inp.addEventListener('input',()=>{
-    const r=+inp.dataset.row,c=+inp.dataset.col;let val=inp.value.replace(/[^\d.]/g,'');
-    const max=flatCols()[c].max; if(val!==''&&parseFloat(val)>max){val=String(max);} inp.value=val;
-    students[r].marks[c]=val; $('tot-'+r).textContent=rowTotal(students[r]); saveState();
+  document.querySelectorAll('.box').forEach(box=>box.addEventListener('click',()=>{
+    const r=+box.dataset.row,c=+box.dataset.col,k=+box.dataset.k;
+    const cur=parseInt(students[r].marks[c],10)||0;
+    const val=(cur===k)?k-1:k;                 // إعادة الضغط على آخر خانة ممتلئة يُنقِص درجة
+    students[r].marks[c]=val?String(val):'';
+    box.parentElement.querySelectorAll('.box').forEach(bx=>bx.classList.toggle('on',(+bx.dataset.k)<=val));
+    $('tot-'+r).textContent=rowTotal(students[r]); saveState();
   }));
   document.querySelectorAll('input.nm').forEach(inp=>inp.addEventListener('input',()=>{students[+inp.dataset.row].name=inp.value;saveState();}));
 }
@@ -589,6 +649,11 @@ function exportPPT(){
   pptx.writeFile({fileName:fileName()+'.pptx'}); toast('تم تصدير PowerPoint');
 }
 
+/* ===================== Export menu ===================== */
+function toggleExportMenu(){$('exportMenu').classList.toggle('open');}
+function closeExportMenu(){const m=$('exportMenu');if(m)m.classList.remove('open');}
+document.addEventListener('click',e=>{const m=$('exportMenu');if(m&&!m.contains(e.target))closeExportMenu();});
+
 /* ===================== Helpers ===================== */
 function guard(){if(!students.length){toast('لا يوجد كشف للتصدير');return false;}return true;}
 function esc(s){return String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
@@ -612,7 +677,7 @@ function loadSample(){
 }
 
 /* init */
-$('barLogo').innerHTML = window.LOGO_MOE ? `<img src="${window.LOGO_MOE}" alt="" style="height:34px;width:auto;display:block;background:#fff;padding:3px 7px;border-radius:8px">` : '';
+$('barLogo').innerHTML = window.LOGO_MUJAWWADA ? `<img src="${window.LOGO_MUJAWWADA}" alt="" style="height:38px;width:auto;display:block;background:#fff;padding:4px 8px;border-radius:8px">` : '';
 document.addEventListener('DOMContentLoaded',()=>META_FIELDS.forEach(k=>$(k)&&$(k).addEventListener('input',saveState)));
 loadState(); renderCritEditor(); if(students.length)renderSheet();
 </script>
