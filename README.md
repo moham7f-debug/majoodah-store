@@ -12,7 +12,7 @@
 ## هيكل الملفات
 
 ```
-salla-theme/
+(جذر المستودع)
 ├── twilight.json                  # بيانات القالب + إعدادات التخصيص (ألوان/واتساب/بانر)
 ├── package.json                   # سكربتات Salla CLI
 └── src/
@@ -49,7 +49,7 @@ npm install -g @salla.sa/cli
 
 ## التشغيل محليًا (معاينة)
 
-من داخل مجلد `salla-theme/`:
+من **جذر المستودع** (حيث يوجد `twilight.json`):
 
 ```bash
 # 1) تسجيل الدخول لحساب الشريك
@@ -73,7 +73,7 @@ salla theme publish
 
 > ⚠️ **مهم — أكثر خطأ شائع:** أمر `salla theme publish` لا يقبل أي وسائط (arguments)
 > على الإطلاق. **لا تكتب اسم القالب ولا وصفه ولا أي مسار بعده.** القالب الذي سيُنشر
-> يُحدَّد من **المجلد الذي أنت واقف فيه** (لهذا يجب `cd salla-theme` أولًا).
+> يُحدَّد من **المجلد الذي أنت واقف فيه** (يجب أن تكون في جذر المستودع حيث `twilight.json`).
 >
 > - ❌ خطأ: `salla theme publish قالب متجر مجودة` ← 3 كلمات = `Expected 0 arguments but got 3`
 > - ❌ خطأ: `salla theme publish mojawada-theme` ← كلمة زائدة = `got 1`
