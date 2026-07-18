@@ -1,0 +1,37 @@
+{# الفوتر #}
+{% set wa = theme.settings.get('whatsapp_number', '966500000000') %}
+{% set wa_display = theme.settings.get('whatsapp_display', '0500000000') %}
+<footer class="footer">
+  <div class="container footer__grid">
+    <div class="footer__col">
+      <div class="brand brand--footer">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40" width="36" height="36"><rect width="40" height="40" rx="11" fill="#10917b"/><path d="M11 27V14l9 6 9-6v13" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="brand__text"><strong>{{ store.name | default('متجر مجودة') }}</strong><small>للمنتجات التعليمية</small></span>
+      </div>
+      <p class="footer__about">سجلات وملفات مدرسية جاهزة بجودة عالية، نساعد المعلم على التنظيم والتميّز.</p>
+    </div>
+    <div class="footer__col">
+      <h3>روابط سريعة</h3>
+      <ul><li><a href="#best-sellers">الأكثر مبيعًا</a></li><li><a href="#new-products">وصل حديثًا</a></li><li><a href="#categories">التصنيفات</a></li><li><a href="#faq">الأسئلة الشائعة</a></li></ul>
+    </div>
+    <div class="footer__col">
+      <h3>سياساتنا</h3>
+      <ul><li><a href="#">سياسة الخصوصية</a></li><li><a href="#">سياسة الاستبدال والاسترجاع</a></li><li><a href="#">شروط الاستخدام</a></li><li><a href="#">المدونة</a></li></ul>
+    </div>
+    <div class="footer__col">
+      <h3>تواصل معنا</h3>
+      <a class="footer__wa" href="https://wa.me/{{ wa }}" target="_blank" rel="noopener">💬 واتساب: {{ wa_display }}</a>
+      <div class="pay">
+        <span class="pay__chip">مدى</span><span class="pay__chip">Visa</span><span class="pay__chip">Apple Pay</span><span class="pay__chip">Mastercard</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer__bar">
+    <div class="container footer__bar-inner">
+      <span>© <span id="year"></span> {{ store.name | default('متجر مجودة') }} — جميع الحقوق محفوظة.</span>
+      <span>صُنع بحبّ للميدان التربوي ❤️</span>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,60 @@
+{#
+  القالب الرئيسي (Master Layout) — متجر مجودة
+  يحتوي على: الشريط الإعلاني، الهيدر، مكان المحتوى، الفوتر، الأزرار العائمة، درج السلة.
+  كل صفحة (pages/*.twig) ترث هذا القالب عبر: {% extends "layouts.master" %}
+#}
+<!DOCTYPE html>
+<html lang="{{ store.language.code | default('ar') }}" dir="{{ store.language.direction | default('rtl') }}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="{{ theme.settings.get('primary_color', '#0e7c6b') }}" />
+
+  <title>{% block title %}{{ page.title | default(store.name) }}{% endblock %}</title>
+  <meta name="description" content="{% block description %}{{ store.description | default('سجلات وملفات إنجاز ولوحات مدرسية جاهزة للتعديل والطباعة بصيغة PDF و Word.') }}{% endblock %}" />
+
+  {# خطوط Google — Tajawal #}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+
+  {# تُحقن هنا أصول سلة الأساسية + مكونات Salla (salla-product-card ...) + ملف app.scss المُجمّع #}
+  {{ salla.header }}
+
+  {# ربط ألوان التصميم بإعدادات القالب القابلة للتخصيص من لوحة تحكم سلة #}
+  <style>
+    :root {
+      --green: {{ theme.settings.get('primary_color', '#0e7c6b') }};
+      --green-d: {{ theme.settings.get('primary_dark', '#0b6a5b') }};
+      --gold: {{ theme.settings.get('accent_color', '#f3b14a') }};
+      --ink: {{ theme.settings.get('ink_color', '#16302b') }};
+    }
+  </style>
+</head>
+<body>
+  {# رابط تخطّي للوصولية #}
+  <a class="skip-link" href="#main">تخطّي إلى المحتوى الرئيسي</a>
+
+  {% include "components.announcement" %}
+  {% include "components.header" %}
+
+  <main id="main">
+    {% block content %}{% endblock %}
+  </main>
+
+  {% include "components.footer" %}
+
+  {# زر واتساب العائم #}
+  <a class="fab-wa" href="https://wa.me/{{ theme.settings.get('whatsapp_number', '966500000000') }}" target="_blank" rel="noopener" aria-label="تواصل عبر واتساب">
+    <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15l-1 3.6 3.7-1A10 10 0 1 0 12 2Zm4.4 12.4c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.4s-.5-1.3-.7-1.7-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11 11 0 0 0 4.3 3.8c1.6.6 1.9.5 2.3.5a2.4 2.4 0 0 0 1.6-1.1 2 2 0 0 0 .1-1.1c0-.1-.2-.2-.4-.3Z"/></svg>
+  </a>
+
+  {# زر العودة للأعلى #}
+  <button class="to-top" id="toTop" aria-label="العودة للأعلى">↑</button>
+
+  {% include "components.cart-drawer" %}
+
+  {# تُحقن هنا سكربتات سلة الأساسية + ملف app.js المُجمّع #}
+  {{ salla.footer }}
+</body>
+</html>

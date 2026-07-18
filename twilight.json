@@ -1,0 +1,16 @@
+{
+    "name": {
+        "ar": "متجر مجودة",
+        "en": "Mojawada Store"
+    },
+    "repository": "https://github.com/moham7f-debug/majoodah-store",
+    "author_email": "moha.m7f@gmail.com",
+    "features": [],
+    "description": {
+        "ar": "قالب متجر مجودة — تصميم عربي RTL للمنتجات التعليمية (سجلات وملفات ولوحات مدرسية جاهزة).",
+        "en": "Mojawada Store — an Arabic RTL Salla theme for educational products (school records, portfolios and boards)."
+    },
+    "support_url": "https://salla.sa/",
+    "settings": [],
+    "components": []
+}

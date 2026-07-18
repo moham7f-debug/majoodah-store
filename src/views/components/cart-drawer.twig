@@ -1,0 +1,16 @@
+{# درج السلة الجانبي (تجريبي — يعمل بالكامل في الواجهة) #}
+{% set wa = theme.settings.get('whatsapp_number', '966500000000') %}
+<div class="drawer" id="cartDrawer" aria-hidden="true">
+  <div class="drawer__overlay" data-close></div>
+  <aside class="drawer__panel" role="dialog" aria-modal="true" aria-label="عربة التسوق">
+    <header class="drawer__head">
+      <h3>عربة التسوق</h3>
+      <button class="icon-btn" data-close aria-label="إغلاق">✕</button>
+    </header>
+    <div class="drawer__body" id="cartItems"></div>
+    <footer class="drawer__foot">
+      <div class="drawer__total"><span>الإجمالي</span><strong id="cartTotal">0 ر.س</strong></div>
+      <a class="btn btn--primary btn--block" href="https://wa.me/{{ wa }}" target="_blank" rel="noopener">إتمام الطلب عبر واتساب</a>
+    </footer>
+  </aside>
+</div>

@@ -1,0 +1,200 @@
+{#
+  الصفحة الرئيسية — متجر مجودة
+  ترث القالب الرئيسي، وتعرض: البانر، المميزات، التصنيفات، الأكثر مبيعًا،
+  وصل حديثًا، الإحصائيات، الأسئلة الشائعة، آراء العملاء، دعوة للطلب.
+
+  المنتجات هنا "بيانات تجريبية" كما في التصميم الأصلي. لعرض منتجات المتجر
+  الحقيقية بدلًا منها، انظر قسم «الربط بمنتجات سلة» في README.
+#}
+{% extends "layouts.master" %}
+
+{% block title %}{{ store.name | default('متجر مجودة') }} | سجلات مدرسية جاهزة للتعديل والطباعة{% endblock %}
+
+{% block content %}
+
+{% set products = [
+  { id: 1,  title: 'سجل المعلم الإلكتروني الشامل', cat: 'معلم', price: 35, was: 50, rating: '4.9', badge: 'الأكثر مبيعًا', color: '#0e7c6b', group: 'best' },
+  { id: 2,  title: 'ملف إنجاز المعلمة الاحترافي', cat: 'معلم', price: 29, was: 45, rating: '4.8', badge: 'خصم', color: '#f3b14a', group: 'best' },
+  { id: 3,  title: 'كشوفات متابعة الطلاب الذكية', cat: 'متابعة', price: 25, was: null, rating: '4.9', badge: null, color: '#3b82c4', group: 'best' },
+  { id: 4,  title: 'لوحات مدرسية تحفيزية جاهزة', cat: 'لوحات', price: 19, was: 30, rating: '5.0', badge: 'خصم', color: '#9b5de5', group: 'best' },
+  { id: 5,  title: 'حقيبة رائد النشاط المتكاملة', cat: 'رائد نشاط', price: 39, was: null, rating: '4.7', badge: null, color: '#e15554', group: 'best' },
+  { id: 6,  title: 'سجل الموجه الطلابي والإرشاد', cat: 'موجه طلابي', price: 33, was: 48, rating: '4.8', badge: 'خصم', color: '#2bb5a0', group: 'best' },
+  { id: 7,  title: 'نموذج التقويم الذاتي للمعلم', cat: 'تقويم ذاتي', price: 22, was: null, rating: '4.9', badge: null, color: '#f3b14a', group: 'best' },
+  { id: 8,  title: 'شهادات تقدير ذكية قابلة للتعبئة', cat: 'شهادات', price: 27, was: 40, rating: '5.0', badge: 'جديد', color: '#0e7c6b', group: 'best' },
+  { id: 9,  title: 'خطة المدير المدرسية للعام الجديد', cat: 'مدير مدرسة', price: 45, was: null, rating: '4.9', badge: 'جديد', color: '#9b5de5', group: 'new' },
+  { id: 10, title: 'سجل وكيل المدرسة الإداري', cat: 'وكيل مدرسة', price: 38, was: 55, rating: '4.8', badge: 'جديد', color: '#3b82c4', group: 'new' },
+  { id: 11, title: 'بطاقات الحضور والمتابعة اليومية', cat: 'متابعة', price: 18, was: null, rating: '4.7', badge: 'جديد', color: '#e15554', group: 'new' },
+  { id: 12, title: 'حقيبة الأنشطة الصفية التفاعلية', cat: 'رائد نشاط', price: 31, was: 42, rating: '4.9', badge: 'جديد', color: '#2bb5a0', group: 'new' },
+  { id: 13, title: 'ملف إنجاز القائد التربوي', cat: 'مدير مدرسة', price: 42, was: null, rating: '5.0', badge: 'جديد', color: '#0e7c6b', group: 'new' },
+  { id: 14, title: 'نماذج خطابات وتعاميم إدارية', cat: 'وكيل مدرسة', price: 24, was: 36, rating: '4.6', badge: 'جديد', color: '#f3b14a', group: 'new' },
+  { id: 15, title: 'سجل الزيارات الصفية والإشرافية', cat: 'موجه طلابي', price: 28, was: null, rating: '4.8', badge: 'جديد', color: '#9b5de5', group: 'new' },
+  { id: 16, title: 'تصاميم لوحات المناسبات الوطنية', cat: 'لوحات', price: 21, was: 32, rating: '4.9', badge: 'جديد', color: '#3b82c4', group: 'new' }
+] %}
+
+{# ===== البانر الرئيسي ===== #}
+<section class="hero">
+  <div class="container hero__inner">
+    <div class="hero__content">
+      <span class="badge">{{ theme.settings.get('hero_badge', 'جودة تليق بمهنتك ✦') }}</span>
+      <h1>{{ theme.settings.get('hero_title', 'سجلات وملفات مدرسية جاهزة للتعديل والطباعة') | raw }}</h1>
+      <p>{{ theme.settings.get('hero_subtitle', 'بصيغة PDF و Word متوافقة مع هوية وزارة التعليم — تناسب المعلمين والمعلمات والإداريين. اطلب الآن واستلم ملفاتك فورًا عبر واتساب.') }}</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="#best-sellers">تسوّق الأكثر مبيعًا</a>
+        <a class="btn btn--ghost" href="https://wa.me/{{ theme.settings.get('whatsapp_number', '966500000000') }}" target="_blank" rel="noopener">تواصل معنا</a>
+      </div>
+      <ul class="hero__trust">
+        <li>✅ تسليم فوري</li>
+        <li>✅ تعديل غير محدود</li>
+        <li>✅ دعم يومي</li>
+      </ul>
+    </div>
+    <div class="hero__art" aria-hidden="true">
+      <div class="hero__card hero__card--1">
+        <svg viewBox="0 0 120 150"><rect width="120" height="150" rx="8" fill="#fff"/><rect x="14" y="16" width="92" height="14" rx="4" fill="#0e7c6b"/><rect x="14" y="42" width="70" height="7" rx="3" fill="#d8e6e2"/><rect x="14" y="56" width="92" height="7" rx="3" fill="#e8efed"/><rect x="14" y="70" width="84" height="7" rx="3" fill="#e8efed"/><rect x="14" y="92" width="92" height="7" rx="3" fill="#e8efed"/><rect x="14" y="106" width="60" height="7" rx="3" fill="#e8efed"/><circle cx="92" cy="128" r="12" fill="#f3b14a"/></svg>
+      </div>
+      <div class="hero__card hero__card--2">
+        <svg viewBox="0 0 120 150"><rect width="120" height="150" rx="8" fill="#fff"/><rect x="0" y="0" width="120" height="40" rx="8" fill="#f3b14a"/><rect x="16" y="56" width="88" height="8" rx="4" fill="#e8efed"/><rect x="16" y="72" width="72" height="8" rx="4" fill="#e8efed"/><rect x="16" y="96" width="88" height="8" rx="4" fill="#e8efed"/><rect x="16" y="112" width="50" height="8" rx="4" fill="#0e7c6b"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ===== شريط المميزات ===== #}
+<section class="features" aria-label="مميزات المتجر">
+  <div class="container features__grid">
+    <div class="feature"><span class="feature__ic">💳</span><div><strong>طرق دفع متعددة</strong><small>مدى، فيزا، آبل باي وغيرها</small></div></div>
+    <div class="feature"><span class="feature__ic">⚡</span><div><strong>تسليم فوري</strong><small>استلام الملفات عبر واتساب</small></div></div>
+    <div class="feature"><span class="feature__ic">↩️</span><div><strong>ضمان 3 أيام</strong><small>استبدال أو استرجاع مرن</small></div></div>
+    <div class="feature"><span class="feature__ic">🎧</span><div><strong>دعم يومي</strong><small>نخدمك طوال أيام الأسبوع</small></div></div>
+  </div>
+</section>
+
+{# ===== التصنيفات حسب الدور المهني ===== #}
+<section class="section" id="categories">
+  <div class="container">
+    <header class="section__head">
+      <h2>تسوّق حسب دورك المهني</h2>
+      <p>منتجات مصممة خصيصًا لكل تخصص في الميدان التربوي</p>
+    </header>
+    <div class="cats">
+      <a class="cat" id="cat-teacher" href="#best-sellers"><span class="cat__ic" style="--c:#0e7c6b">👩‍🏫</span><strong>معلم / معلمة</strong><small>سجلات وملفات الإنجاز</small></a>
+      <a class="cat" id="cat-activity" href="#best-sellers"><span class="cat__ic" style="--c:#f3b14a">🎯</span><strong>رائد نشاط</strong><small>خطط وبرامج النشاط</small></a>
+      <a class="cat" id="cat-counselor" href="#best-sellers"><span class="cat__ic" style="--c:#3b82c4">🧭</span><strong>موجه طلابي</strong><small>برامج التوجيه والإرشاد</small></a>
+      <a class="cat" id="cat-principal" href="#best-sellers"><span class="cat__ic" style="--c:#9b5de5">🏫</span><strong>مدير مدرسة</strong><small>خطط القيادة المدرسية</small></a>
+      <a class="cat" id="cat-agent" href="#best-sellers"><span class="cat__ic" style="--c:#e15554">📋</span><strong>وكيل مدرسة</strong><small>كشوفات ومتابعة</small></a>
+    </div>
+  </div>
+</section>
+
+{# ===== الأكثر مبيعًا ===== #}
+<section class="section section--alt" id="best-sellers">
+  <div class="container">
+    <header class="section__head section__head--row">
+      <div>
+        <h2>الأكثر مبيعًا</h2>
+        <p>منتجات اختارها آلاف المعلمين</p>
+      </div>
+      <a class="link-more" href="#new-products">عرض الكل ←</a>
+    </header>
+    <div class="products" id="bestSellersGrid">
+      {% for p in products if p.group == 'best' %}
+        {% include "components.product-card" with { p: p } %}
+      {% endfor %}
+    </div>
+    <p class="no-results" id="noResults" hidden>لا توجد نتائج مطابقة لبحثك.</p>
+  </div>
+</section>
+
+{# ===== وصل حديثًا ===== #}
+<section class="section" id="new-products">
+  <div class="container">
+    <header class="section__head section__head--row">
+      <div>
+        <h2>وصل حديثًا</h2>
+        <p>أحدث الإصدارات للفصل الدراسي الجديد</p>
+      </div>
+      <a class="link-more" href="#best-sellers">عرض الكل ←</a>
+    </header>
+    <div class="products" id="newProductsGrid">
+      {% for p in products if p.group == 'new' %}
+        {% include "components.product-card" with { p: p } %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ===== الإحصائيات ===== #}
+<section class="stats" aria-label="إحصائيات المتجر">
+  <div class="container stats__grid">
+    <div class="stat"><strong data-count="33000">0</strong><span>طلب أنجزناه</span></div>
+    <div class="stat"><strong data-count="26000">0</strong><span>عميل مميز</span></div>
+    <div class="stat"><strong data-count="5000">0</strong><span>زيارة يوميًا</span></div>
+    <div class="stat"><strong data-count="1000">0</strong><span>منتج متاح</span></div>
+  </div>
+</section>
+
+{# ===== الأسئلة الشائعة ===== #}
+<section class="section" id="faq">
+  <div class="container container--narrow">
+    <header class="section__head">
+      <h2>الأسئلة الشائعة</h2>
+      <p>كل ما تحتاج معرفته قبل الطلب</p>
+    </header>
+    <div class="faq">
+      <details class="faq__item">
+        <summary>كيف أستلم المنتج بعد الشراء؟</summary>
+        <div class="faq__body">يتم إرسال رابط تحميل الملفات مباشرة بعد إتمام الطلب، كما نرسلها لك عبر واتساب لضمان وصولها.</div>
+      </details>
+      <details class="faq__item">
+        <summary>هل الملفات قابلة للتعديل؟</summary>
+        <div class="faq__body">نعم، جميع الملفات بصيغة Word و PDF قابلة للتعديل والطباعة بشكل غير محدود.</div>
+      </details>
+      <details class="faq__item">
+        <summary>ما هي سياسة الاسترجاع؟</summary>
+        <div class="faq__body">نوفّر ضمان استبدال أو استرجاع خلال 3 أيام في حال وجود أي مشكلة في الملفات.</div>
+      </details>
+      <details class="faq__item">
+        <summary>هل المنتجات متوافقة مع هوية وزارة التعليم؟</summary>
+        <div class="faq__body">نعم، صُممت جميع المنتجات لتتوافق مع الهوية البصرية المعتمدة وتلبّي احتياجات الميدان التربوي.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+{# ===== آراء العملاء ===== #}
+<section class="section section--alt" id="testimonials">
+  <div class="container">
+    <header class="section__head">
+      <h2>آراء عملائنا</h2>
+      <p>أكثر من 26 ألف عميل يثقون بجودتنا</p>
+    </header>
+    <div class="testimonials">
+      <figure class="tcard">
+        <div class="stars" aria-label="5 من 5">★★★★★</div>
+        <blockquote>منتج متميز وسهل الاستخدام ومنتجات متنوعة وأسعار تنافسية.</blockquote>
+        <figcaption><span class="avatar">ع</span> عمر الشهراني</figcaption>
+      </figure>
+      <figure class="tcard">
+        <div class="stars" aria-label="5 من 5">★★★★★</div>
+        <blockquote>وفّرت عليّ وقت كبير، الملفات منسّقة باحترافية والتسليم كان فوري.</blockquote>
+        <figcaption><span class="avatar">ن</span> نورة القحطاني</figcaption>
+      </figure>
+      <figure class="tcard">
+        <div class="stars" aria-label="5 من 5">★★★★★</div>
+        <blockquote>الدعم سريع جدًا والجودة ممتازة، تعاملت معهم أكثر من مرة وأنصح بهم.</blockquote>
+        <figcaption><span class="avatar">خ</span> خالد العتيبي</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+{# ===== دعوة للطلب ===== #}
+<section class="cta">
+  <div class="container cta__inner">
+    <h2>جاهز تبدأ عامك الدراسي بتنظيم واحترافية؟</h2>
+    <p>انضم لآلاف المعلمين الذين اختاروا جودة مجودة.</p>
+    <a class="btn btn--light" href="#best-sellers">تصفّح المنتجات</a>
+  </div>
+</section>
+
+{% endblock %}

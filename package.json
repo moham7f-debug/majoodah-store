@@ -1,0 +1,14 @@
+{
+  "name": "mojawada-theme",
+  "version": "1.0.0",
+  "description": "قالب متجر مجودة لسلة (Twilight) — تصميم عربي RTL للمنتجات التعليمية",
+  "private": true,
+  "engines": {
+    "node": ">=16"
+  },
+  "scripts": {
+    "preview": "salla theme preview",
+    "theme:publish": "salla theme publish",
+    "theme:list": "salla theme list"
+  }
+}
